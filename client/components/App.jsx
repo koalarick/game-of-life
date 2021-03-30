@@ -1,60 +1,110 @@
 import React, { useRef, useEffect, useState } from "react";
-import { Button, Box, Stack, Center } from "@chakra-ui/react";
+import { Button, Box, IconButton, Stack, Center } from "@chakra-ui/react";
 import { Stat, StatLabel, StatNumber } from "@chakra-ui/react";
 import { useInterval } from "../helperFunctions";
+import {
+  MdPlayCircleFilled,
+  MdPauseCircleFilled,
+  MdRefresh,
+  MdKeyboardArrowDown,
+  MdKeyboardArrowUp,
+} from "react-icons/md";
+import { AiFillStepForward } from "react-icons/ai";
 
 import Canvas from "./Canvas";
 
 const App = () => {
   const [generation, setGeneration] = useState(0);
   const [autoPlay, setAutoPlay] = useState(false);
+  const [autoPlaySpeed, setAutoPlaySpeed] = useState(500);
 
   useInterval(
     () => {
       setGeneration(generation + 1);
     },
-    autoPlay ? 100 : null
+    autoPlay ? autoPlaySpeed : null
   );
 
-  const nextClick = () => {
+  const nextGeneration = () => {
     setGeneration(generation + 1);
   };
 
-  const autoPlayClick = () => {
+  const togglePlay = () => {
     setAutoPlay(!autoPlay);
   };
 
-  const resetClick = () => {
+  const resetWorld = () => {
     setGeneration(0);
+  };
+
+  const increaseSpeed = () => {
+    setAutoPlaySpeed(autoPlaySpeed - 100);
+  };
+
+  const decreaseSpeed = () => {
+    setAutoPlaySpeed(autoPlaySpeed + 100);
   };
 
   return (
     <Center w="100%">
       <Box m={4} alignItems="center">
-        <Canvas generation={generation} />
-        <Center>
-          <Stack m={4} spacing={4} direction="row" align="center">
-            <Button
-              onClick={resetClick}
+        <Stack m={4} spacing={4} direction="row" align="center">
+          <Stack m={4} spacing={4} direction="column" align="center">
+            <IconButton
+              onClick={resetWorld}
+              aria-label="Refresh"
+              colorScheme="teal"
+              icon={<MdRefresh size={30} />}
+              size="md"
+              isDisabled={autoPlay}
+            ></IconButton>
+            <IconButton
+              onClick={togglePlay}
+              aria-label="Start AutoPlay"
+              icon={
+                autoPlay ? (
+                  <MdPauseCircleFilled size={30} />
+                ) : (
+                  <MdPlayCircleFilled size={30} />
+                )
+              }
+              colorScheme="teal"
+              size="lg"
+            ></IconButton>
+            <IconButton
+              onClick={nextGeneration}
+              aria-label="Step Forward"
+              icon={<AiFillStepForward size={30} />}
               colorScheme="teal"
               size="md"
               isDisabled={autoPlay}
-            >
-              Reset
-            </Button>
-            <Button onClick={autoPlayClick} colorScheme="teal" size="lg">
-              {autoPlay ? "Pause" : "Play"}
-            </Button>
-            <Button
-              onClick={nextClick}
-              colorScheme="teal"
-              size="md"
-              isDisabled={autoPlay}
-            >
-              Step 1
-            </Button>
+            ></IconButton>
           </Stack>
-        </Center>
+          <Canvas generation={generation} />
+          <Stack m={4} spacing={4} direction="column" align="center">
+            <IconButton
+              onClick={increaseSpeed}
+              aria-label="Slower"
+              icon={<MdKeyboardArrowUp size={30} />}
+              colorScheme="teal"
+              size="md"
+              isDisabled={autoPlaySpeed === 100 ? true : false}
+            ></IconButton>
+            <Stat align="center">
+              <StatLabel>Speed</StatLabel>
+              <StatNumber>{(1100 - autoPlaySpeed) / 100}</StatNumber>
+            </Stat>
+            <IconButton
+              onClick={decreaseSpeed}
+              aria-label="Slower"
+              icon={<MdKeyboardArrowDown size={30} />}
+              colorScheme="teal"
+              size="md"
+              isDisabled={autoPlaySpeed === 1000 ? true : false}
+            ></IconButton>
+          </Stack>
+        </Stack>
+        <Center></Center>
         <Stat align="center">
           <StatLabel>Generation</StatLabel>
           <StatNumber>{generation}</StatNumber>
