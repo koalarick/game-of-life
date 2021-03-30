@@ -21,7 +21,10 @@ const Canvas = ({ tick }) => {
   }, [world]);
 
   const repaint = () => {
-    if (world) world.paint(canvas.getContext("2d"));
+    if (world) {
+      world.paint(canvas.getContext("2d"));
+      console.log(world.tick(1));
+    }
   };
 
   return (
