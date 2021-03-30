@@ -1,0 +1,37 @@
+{
+  "name": "game-of-life",
+  "version": "1.0.0",
+  "description": "A 2-day implementation of Conway's Game of Life",
+  "main": "webpack.config.js",
+  "scripts": {
+    "react-dev": "webpack -d --watch",
+    "start": "nodemon server/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/koalarick/game-of-life.git"
+  },
+  "author": "Michael Kolarik",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/koalarick/game-of-life/issues"
+  },
+  "homepage": "https://github.com/koalarick/game-of-life#readme",
+  "dependencies": {
+    "babel-polyfill": "^6.26.0",
+    "express": "^4.17.0",
+    "mysql": "^2.18.1",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.11.6",
+    "@babel/preset-env": "^7.11.5",
+    "@babel/preset-react": "^7.10.4",
+    "babel-loader": "^8.1.0",
+    "nodemon": "^2.0.4",
+    "path": "^0.12.7",
+    "webpack": "^4.44.1",
+    "webpack-cli": "^3.3.12"
+  }
+}
