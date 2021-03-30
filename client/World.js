@@ -2,9 +2,9 @@ class World {
   constructor(
     width = 650,
     height = 400,
+    seed = [],
     bgRGBA = { red: 255, green: 255, blue: 255, alpha: 255 },
-    fgRGBA = { red: 0, green: 0, blue: 0, alpha: 255 },
-    seed = []
+    fgRGBA = { red: 0, green: 0, blue: 0, alpha: 255 }
   ) {
     this.width = width;
     this.height = height;

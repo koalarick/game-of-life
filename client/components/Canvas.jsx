@@ -8,20 +8,25 @@ const Canvas = ({ generation }) => {
 
   useEffect(() => {
     var newWorld = new World();
-    console.log(newWorld);
     setWorld(newWorld.randomize());
   }, []);
 
   useEffect(() => {
-    repaint();
+    // when we change generation we need to tick
+    if (world) {
+      let newWorld = new World(650, 400, world.tick(1));
+      setWorld(newWorld);
+    }
   }, [generation]);
 
   useEffect(() => {
+    // after a tick and world is updated, we need to repaint
     repaint();
   }, [world]);
 
   const repaint = () => {
     if (world) {
+      console.log(world);
       world.paint(canvas.getContext("2d"));
     }
   };

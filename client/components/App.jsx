@@ -1,13 +1,6 @@
 import React, { useRef, useEffect, useState } from "react";
 import { Button, Box, Stack, Center } from "@chakra-ui/react";
-import {
-  Stat,
-  StatLabel,
-  StatNumber,
-  StatHelpText,
-  StatArrow,
-  StatGroup,
-} from "@chakra-ui/react";
+import { Stat, StatLabel, StatNumber } from "@chakra-ui/react";
 
 import Canvas from "./Canvas";
 
@@ -21,7 +14,7 @@ const App = () => {
   return (
     <Center w="100%">
       <Box m={4} alignItems="center">
-        <Canvas tick={generation} />
+        <Canvas generation={generation} />
         <Center>
           <Stack m={4} spacing={4} direction="row" align="center">
             <Button colorScheme="teal" size="md">
