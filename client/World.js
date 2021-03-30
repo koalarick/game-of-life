@@ -1,7 +1,7 @@
 class World {
   constructor(
-    width = 10,
-    height = 10,
+    width = 650,
+    height = 400,
     bgRGBA = { red: 255, green: 255, blue: 255, alpha: 255 },
     fgRGBA = { red: 0, green: 0, blue: 0, alpha: 255 },
     seed = []
@@ -49,12 +49,6 @@ class World {
   }
 
   tick(numTicks = 1) {
-    // for num of ticks
-    // loop through each cell in matrix
-    // if countLiveNeighbors does not follow rule
-    // set cell to zero
-    // set cell to 1
-    // return this
     let newMatrix = this.matrix.map((arr) => {
       return arr.slice();
     });
@@ -81,17 +75,10 @@ class World {
   }
 
   _countLiveNeighbors(x, y) {
-    // return length of _findNeighbors(x,y)
     return this._findNeighbors(x, y).length;
   }
 
   _findNeighbors(origX, origY, wantDead = false, wantAlive = true) {
-    // for x goes from -1 to 1
-    // for y goes from -1 to 1
-    // if x,y is a valid coordinate push to results if meet criteria
-    // else if y is out of bounds then run the criteria check on y min or y max and push if valid
-    // else if x is out of bounds then run the criteria check on x min or x max and push if valid
-    // return an array of neighbors coordinates meeting criteria
     var neighbors = [];
     var xValid, yValid, xAdj, yAdj;
 

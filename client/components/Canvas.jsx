@@ -1,7 +1,7 @@
 import React, { useRef, useEffect, useState } from "react";
 import World from "../World";
 
-const Canvas = ({ tick }) => {
+const Canvas = ({ generation }) => {
   const canvasRef = useRef(null);
   const canvas = canvasRef.current;
   const [world, setWorld] = useState(null);
@@ -14,7 +14,7 @@ const Canvas = ({ tick }) => {
 
   useEffect(() => {
     repaint();
-  }, [tick]);
+  }, [generation]);
 
   useEffect(() => {
     repaint();
@@ -23,13 +23,12 @@ const Canvas = ({ tick }) => {
   const repaint = () => {
     if (world) {
       world.paint(canvas.getContext("2d"));
-      console.log(world.tick(1));
     }
   };
 
   return (
     <div>
-      <canvas ref={canvasRef} width={640} height={425} />
+      <canvas ref={canvasRef} width={650} height={400} />
     </div>
   );
 };
