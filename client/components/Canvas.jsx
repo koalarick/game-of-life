@@ -6,12 +6,16 @@ const Canvas = ({ generation }) => {
   const canvas = canvasRef.current;
   const [world, setWorld] = useState(null);
 
-  useEffect(() => {
-    var newWorld = new World();
-    setWorld(newWorld.randomize());
-  }, []);
+  // useEffect(() => {
+  //   var newWorld = new World();
+  //   setWorld(newWorld.randomize());
+  // }, []);
 
   useEffect(() => {
+    if (!generation) {
+      var newWorld = new World();
+      setWorld(newWorld.randomize());
+    }
     // when we change generation we need to tick
     if (world) {
       let newWorld = new World(650, 400, world.tick(1));

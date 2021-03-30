@@ -13,7 +13,7 @@ const App = () => {
     () => {
       setGeneration(generation + 1);
     },
-    autoPlay ? 2000 : null
+    autoPlay ? 100 : null
   );
 
   const nextClick = () => {
@@ -24,19 +24,33 @@ const App = () => {
     setAutoPlay(!autoPlay);
   };
 
+  const resetClick = () => {
+    setGeneration(0);
+  };
+
   return (
     <Center w="100%">
       <Box m={4} alignItems="center">
         <Canvas generation={generation} />
         <Center>
           <Stack m={4} spacing={4} direction="row" align="center">
-            <Button colorScheme="teal" size="md">
+            <Button
+              onClick={resetClick}
+              colorScheme="teal"
+              size="md"
+              isDisabled={autoPlay}
+            >
               Reset
             </Button>
             <Button onClick={autoPlayClick} colorScheme="teal" size="lg">
               {autoPlay ? "Pause" : "Play"}
             </Button>
-            <Button onClick={nextClick} colorScheme="teal" size="md">
+            <Button
+              onClick={nextClick}
+              colorScheme="teal"
+              size="md"
+              isDisabled={autoPlay}
+            >
               Step 1
             </Button>
           </Stack>
