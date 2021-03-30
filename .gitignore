@@ -1,1 +1,7 @@
 node_modules
+
+#bundle
+dist/bundle.js
+
+#ds_store
+.DS_Store
