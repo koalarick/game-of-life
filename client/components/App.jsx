@@ -10,8 +10,8 @@ import {
   MdKeyboardArrowUp,
 } from "react-icons/md";
 import { AiFillStepForward } from "react-icons/ai";
-
 import Canvas from "./Canvas";
+import SpeedControl from "./SpeedControl";
 
 const App = () => {
   const [generation, setGeneration] = useState(0);
@@ -35,14 +35,6 @@ const App = () => {
 
   const resetWorld = () => {
     setGeneration(0);
-  };
-
-  const increaseSpeed = () => {
-    setAutoPlaySpeed(autoPlaySpeed - 100);
-  };
-
-  const decreaseSpeed = () => {
-    setAutoPlaySpeed(autoPlaySpeed + 100);
   };
 
   return (
@@ -81,28 +73,10 @@ const App = () => {
             ></IconButton>
           </Stack>
           <Canvas generation={generation} />
-          <Stack m={4} spacing={4} direction="column" align="center">
-            <IconButton
-              onClick={increaseSpeed}
-              aria-label="Slower"
-              icon={<MdKeyboardArrowUp size={30} />}
-              colorScheme="teal"
-              size="md"
-              isDisabled={autoPlaySpeed === 100 ? true : false}
-            ></IconButton>
-            <Stat align="center">
-              <StatLabel>Speed</StatLabel>
-              <StatNumber>{(1100 - autoPlaySpeed) / 100}</StatNumber>
-            </Stat>
-            <IconButton
-              onClick={decreaseSpeed}
-              aria-label="Slower"
-              icon={<MdKeyboardArrowDown size={30} />}
-              colorScheme="teal"
-              size="md"
-              isDisabled={autoPlaySpeed === 1000 ? true : false}
-            ></IconButton>
-          </Stack>
+          <SpeedControl
+            autoPlaySpeed={autoPlaySpeed}
+            setAutoPlaySpeed={setAutoPlaySpeed.bind(this)}
+          />
         </Stack>
         <Center></Center>
         <Stat align="center">
