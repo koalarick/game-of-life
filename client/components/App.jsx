@@ -1,11 +1,20 @@
 import React, { useRef, useEffect, useState } from "react";
 import { Button, Box, Stack, Center } from "@chakra-ui/react";
 import { Stat, StatLabel, StatNumber } from "@chakra-ui/react";
+import { useInterval } from "../helperFunctions";
 
 import Canvas from "./Canvas";
 
 const App = () => {
   const [generation, setGeneration] = useState(0);
+  const [autoPlay, setAutoPlay] = useState(false);
+
+  useInterval(
+    () => {
+      setGeneration(generation + 1);
+    },
+    autoPlay ? 2000 : null
+  );
 
   const next = () => {
     setGeneration(generation + 1);
@@ -23,8 +32,12 @@ const App = () => {
             <Button onClick={next} colorScheme="teal" size="lg">
               Next
             </Button>
-            <Button colorScheme="teal" size="md">
-              Back
+            <Button
+              onClick={() => setAutoPlay(!autoPlay)}
+              colorScheme="teal"
+              size="md"
+            >
+              AutoPlay
             </Button>
           </Stack>
         </Center>

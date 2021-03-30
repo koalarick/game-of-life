@@ -26,7 +26,6 @@ const Canvas = ({ generation }) => {
 
   const repaint = () => {
     if (world) {
-      console.log(world);
       world.paint(canvas.getContext("2d"));
     }
   };
