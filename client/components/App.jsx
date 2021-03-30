@@ -16,8 +16,12 @@ const App = () => {
     autoPlay ? 2000 : null
   );
 
-  const next = () => {
+  const nextClick = () => {
     setGeneration(generation + 1);
+  };
+
+  const autoPlayClick = () => {
+    setAutoPlay(!autoPlay);
   };
 
   return (
@@ -29,15 +33,11 @@ const App = () => {
             <Button colorScheme="teal" size="md">
               Reset
             </Button>
-            <Button onClick={next} colorScheme="teal" size="lg">
-              Next
+            <Button onClick={autoPlayClick} colorScheme="teal" size="lg">
+              {autoPlay ? "Pause" : "Play"}
             </Button>
-            <Button
-              onClick={() => setAutoPlay(!autoPlay)}
-              colorScheme="teal"
-              size="md"
-            >
-              AutoPlay
+            <Button onClick={nextClick} colorScheme="teal" size="md">
+              Step 1
             </Button>
           </Stack>
         </Center>
