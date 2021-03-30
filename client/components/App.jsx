@@ -2,16 +2,9 @@ import React, { useRef, useEffect, useState } from "react";
 import { Button, Box, IconButton, Stack, Center } from "@chakra-ui/react";
 import { Stat, StatLabel, StatNumber } from "@chakra-ui/react";
 import { useInterval } from "../helperFunctions";
-import {
-  MdPlayCircleFilled,
-  MdPauseCircleFilled,
-  MdRefresh,
-  MdKeyboardArrowDown,
-  MdKeyboardArrowUp,
-} from "react-icons/md";
-import { AiFillStepForward } from "react-icons/ai";
 import Canvas from "./Canvas";
 import SpeedControl from "./SpeedControl";
+import PlaybackControl from "./PlaybackControl";
 
 const App = () => {
   const [generation, setGeneration] = useState(0);
@@ -41,37 +34,12 @@ const App = () => {
     <Center w="100%">
       <Box m={4} alignItems="center">
         <Stack m={4} spacing={4} direction="row" align="center">
-          <Stack m={4} spacing={4} direction="column" align="center">
-            <IconButton
-              onClick={resetWorld}
-              aria-label="Refresh"
-              colorScheme="teal"
-              icon={<MdRefresh size={30} />}
-              size="md"
-              isDisabled={autoPlay}
-            ></IconButton>
-            <IconButton
-              onClick={togglePlay}
-              aria-label="Start AutoPlay"
-              icon={
-                autoPlay ? (
-                  <MdPauseCircleFilled size={30} />
-                ) : (
-                  <MdPlayCircleFilled size={30} />
-                )
-              }
-              colorScheme="teal"
-              size="lg"
-            ></IconButton>
-            <IconButton
-              onClick={nextGeneration}
-              aria-label="Step Forward"
-              icon={<AiFillStepForward size={30} />}
-              colorScheme="teal"
-              size="md"
-              isDisabled={autoPlay}
-            ></IconButton>
-          </Stack>
+          <PlaybackControl
+            autoPlay={autoPlay}
+            resetWorld={resetWorld.bind(this)}
+            togglePlay={togglePlay.bind(this)}
+            nextGeneration={nextGeneration.bind(this)}
+          />
           <Canvas generation={generation} />
           <SpeedControl
             autoPlaySpeed={autoPlaySpeed}
