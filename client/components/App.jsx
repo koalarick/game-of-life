@@ -1,10 +1,22 @@
 import React, { useRef, useEffect, useState } from "react";
 import { Button, Box, Stack, Center } from "@chakra-ui/react";
+import {
+  Stat,
+  StatLabel,
+  StatNumber,
+  StatHelpText,
+  StatArrow,
+  StatGroup,
+} from "@chakra-ui/react";
 
 import Canvas from "./Canvas";
 
 const App = () => {
   const [generation, setGeneration] = useState(0);
+
+  const next = () => {
+    setGeneration(generation + 1);
+  };
 
   return (
     <Center w="100%">
@@ -15,7 +27,7 @@ const App = () => {
             <Button colorScheme="teal" size="md">
               Reset
             </Button>
-            <Button colorScheme="teal" size="lg">
+            <Button onClick={next} colorScheme="teal" size="lg">
               Next
             </Button>
             <Button colorScheme="teal" size="md">
@@ -23,6 +35,10 @@ const App = () => {
             </Button>
           </Stack>
         </Center>
+        <Stat align="center">
+          <StatLabel>Generation</StatLabel>
+          <StatNumber>{generation}</StatNumber>
+        </Stat>
       </Box>
     </Center>
   );
