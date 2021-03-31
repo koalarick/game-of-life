@@ -7,6 +7,7 @@ import SpeedControl from "./SpeedControl";
 import PlaybackControl from "./PlaybackControl";
 import ZoomControl from "./ZoomControl";
 import SettingsMenu from "./SettingsMenu";
+import PhotoGallery from "./PhotoGallery";
 
 const App = () => {
   const [generation, setGeneration] = useState(0);
@@ -16,6 +17,7 @@ const App = () => {
   const [hasChanges, setHasChanges] = useState(false);
   const [randomChance, setRandomChance] = useState(0.0025);
   const [rules, setRules] = useState({ neighborMin: 2, neighborMax: 2 });
+  const [galleryPhotos, setGalleryPhotos] = useState([]);
   const [zoom, setZoom] = useState({
     value: 0,
     factor: 1,
@@ -41,6 +43,11 @@ const App = () => {
     setGeneration(0);
   };
 
+  const saveSnapshot = (matrix) => {
+    console.log(matrix);
+    setGalleryPhotos([...galleryPhotos, matrix]);
+  };
+
   return (
     <>
       <Flex m={6}>
@@ -51,6 +58,7 @@ const App = () => {
         </Box>
         <Spacer />
         <Box>
+          <PhotoGallery />
           <SettingsMenu
             setRandomChance={setRandomChance}
             randomChance={randomChance}
@@ -86,6 +94,8 @@ const App = () => {
               resetWorld={resetWorld.bind(this)}
               togglePlay={togglePlay.bind(this)}
               nextGeneration={nextGeneration.bind(this)}
+              saveSnapshot={saveSnapshot.bind(this)}
+              world={world}
             />
           </Stack>
           <SpeedControl

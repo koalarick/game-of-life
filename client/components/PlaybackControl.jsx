@@ -4,6 +4,7 @@ import {
   MdPlayCircleFilled,
   MdPauseCircleFilled,
   MdRefresh,
+  MdSave,
 } from "react-icons/md";
 import { AiFillStepForward } from "react-icons/ai";
 
@@ -12,6 +13,8 @@ const PlaybackControl = ({
   togglePlay,
   resetWorld,
   nextGeneration,
+  saveSnapshot,
+  world,
 }) => {
   return (
     <Stack m={4} spacing={4} direction="row" align="center">
@@ -40,6 +43,14 @@ const PlaybackControl = ({
         onClick={nextGeneration}
         aria-label="Step Forward"
         icon={<AiFillStepForward size={30} />}
+        colorScheme="teal"
+        size="md"
+        isDisabled={autoPlay}
+      ></IconButton>
+      <IconButton
+        onClick={() => saveSnapshot(world.matrix)}
+        aria-label="Save Snapshot"
+        icon={<MdSave size={30} />}
         colorScheme="teal"
         size="md"
         isDisabled={autoPlay}
