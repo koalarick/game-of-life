@@ -33,7 +33,6 @@ const Canvas = ({
     if (world) {
       world.paint(canvas.getContext("2d"), zoom.factor, zoom.zoomPoint);
       world.dataURL = canvas.toDataURL();
-      console.log(world.dataURL);
     }
   }, [world, zoom]);
 

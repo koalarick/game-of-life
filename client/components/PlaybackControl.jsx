@@ -1,5 +1,5 @@
 import React from "react";
-import { IconButton, Stack } from "@chakra-ui/react";
+import { IconButton, Stack, useToast } from "@chakra-ui/react";
 import {
   MdPlayCircleFilled,
   MdPauseCircleFilled,
@@ -7,13 +7,22 @@ import {
   MdSave,
 } from "react-icons/md";
 import { AiFillStepForward } from "react-icons/ai";
-// const axios = require("axios").default;
+const axios = require("axios").default;
 
-// const savePhoto = (photo) => {
-//   let options = {
-
-//   }
-// }
+const savePhoto = (photo) => {
+  console.log("tried to save");
+  let request = {
+    method: "post",
+    url: "http://localhost:3000/photos",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    data: {
+      photo: photo,
+    },
+  };
+  return axios(request);
+};
 
 const PlaybackControl = ({
   autoPlay,
@@ -23,6 +32,8 @@ const PlaybackControl = ({
   saveSnapshot,
   world,
 }) => {
+  const toast = useToast();
+
   return (
     <Stack m={4} spacing={4} direction="row" align="center">
       <IconButton
@@ -55,7 +66,27 @@ const PlaybackControl = ({
         isDisabled={autoPlay}
       ></IconButton>
       <IconButton
-        onClick={() => saveSnapshot(world.dataURL)}
+        onClick={() => {
+          savePhoto(world.dataURL).then((res) => {
+            if (res.status === 200) {
+              toast({
+                title: "Snapshot saved!",
+                description: "You can check it out in the Gallery",
+                status: "success",
+                duration: 3000,
+                isClosable: true,
+              });
+            } else {
+              toast({
+                title: "Oops!",
+                description: "Something went wrong please try again later",
+                status: "error",
+                duration: 3000,
+                isClosable: true,
+              });
+            }
+          });
+        }}
         aria-label="Save Snapshot"
         icon={<MdSave size={30} />}
         colorScheme="teal"
