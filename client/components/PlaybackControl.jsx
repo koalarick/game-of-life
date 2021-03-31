@@ -14,7 +14,7 @@ const PlaybackControl = ({
   nextGeneration,
 }) => {
   return (
-    <Stack m={4} spacing={4} direction="column" align="center">
+    <Stack m={4} spacing={4} direction="row" align="center">
       <IconButton
         onClick={resetWorld}
         aria-label="Refresh"

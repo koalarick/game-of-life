@@ -1,6 +1,6 @@
 class World {
   constructor(
-    width = 650,
+    width = 400,
     height = 400,
     seed = [],
     bgRGBA = { red: 255, green: 255, blue: 255, alpha: 255 },
@@ -25,23 +25,43 @@ class World {
     return this;
   }
 
-  paint(canvasContext) {
+  paint(canvasContext, zoomFactor = 1, zoomPoint = { x: 0, y: 0 }) {
     var pixel = canvasContext.createImageData(this.width, this.height);
     var d = pixel.data;
+    //var zoomFactor = 2 ** zoom;
+    var frameLength = this.width / zoomFactor;
+    var xBox = Math.floor(zoomPoint.x / frameLength);
+    var yBox = Math.floor(zoomPoint.y / frameLength);
+    var frame = {
+      minX: xBox * frameLength,
+      maxX: (xBox + 1) * frameLength,
+      minY: yBox * frameLength,
+      maxY: (yBox + 1) * frameLength,
+    };
 
-    for (let x = 0; x < this.width; x++) {
-      for (let y = 0; y < this.height; y++) {
-        let idx = (x + y * this.width) * 4;
-        if (this.matrix[x][y]) {
-          d[idx + 0] = this.fgRGBA.red; // red
-          d[idx + 1] = this.fgRGBA.green; // green
-          d[idx + 2] = this.fgRGBA.blue; // blue
-          d[idx + 3] = this.fgRGBA.alpha; // alpha
-        } else {
-          d[idx + 0] = this.bgRGBA.red; // red
-          d[idx + 1] = this.bgRGBA.green; // green
-          d[idx + 2] = this.bgRGBA.blue; // blue
-          d[idx + 3] = this.bgRGBA.alpha; // alpha
+    // console.log(frame);
+    // console.log(zoom);
+    // console.log(zoomFactor);
+
+    let pixelCount = 0;
+    for (let x = frame.minX; x < frame.maxX; x++) {
+      for (let j = 0; j < zoomFactor; j++) {
+        for (let y = frame.minY; y < frame.maxY; y++) {
+          for (let i = 0; i < zoomFactor; i++) {
+            let idx = pixelCount * 4;
+            if (this.matrix[x][y]) {
+              d[idx + 0] = this.fgRGBA.red; // red
+              d[idx + 1] = this.fgRGBA.green; // green
+              d[idx + 2] = this.fgRGBA.blue; // blue
+              d[idx + 3] = this.fgRGBA.alpha; // alpha
+            } else {
+              d[idx + 0] = this.bgRGBA.red; // red
+              d[idx + 1] = this.bgRGBA.green; // green
+              d[idx + 2] = this.bgRGBA.blue; // blue
+              d[idx + 3] = this.bgRGBA.alpha; // alpha
+            }
+            pixelCount++;
+          }
         }
       }
     }

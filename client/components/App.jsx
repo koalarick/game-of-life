@@ -31,28 +31,27 @@ const App = () => {
   };
 
   return (
-    <Center w="100%">
-      <Box m={4} alignItems="center">
-        <Stack m={4} spacing={4} direction="row" align="center">
+    <Stack w="100%" m={4} spacing={4} direction="column" align="center">
+      <Stack m={4} spacing={4} direction="row" align="center">
+        <Stack m={4} spacing={4} direction="column" align="center">
+          <Stat align="center">
+            <StatLabel>Generation</StatLabel>
+            <StatNumber>{generation}</StatNumber>
+          </Stat>
+          <Canvas generation={generation} />
           <PlaybackControl
             autoPlay={autoPlay}
             resetWorld={resetWorld.bind(this)}
             togglePlay={togglePlay.bind(this)}
             nextGeneration={nextGeneration.bind(this)}
           />
-          <Canvas generation={generation} />
-          <SpeedControl
-            autoPlaySpeed={autoPlaySpeed}
-            setAutoPlaySpeed={setAutoPlaySpeed.bind(this)}
-          />
         </Stack>
-        <Center></Center>
-        <Stat align="center">
-          <StatLabel>Generation</StatLabel>
-          <StatNumber>{generation}</StatNumber>
-        </Stat>
-      </Box>
-    </Center>
+        <SpeedControl
+          autoPlaySpeed={autoPlaySpeed}
+          setAutoPlaySpeed={setAutoPlaySpeed.bind(this)}
+        />
+      </Stack>
+    </Stack>
   );
 };
 
