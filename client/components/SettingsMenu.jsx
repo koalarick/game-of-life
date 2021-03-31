@@ -1,5 +1,13 @@
 import React, { useRef, useEffect, useState } from "react";
-import { Button, Select, Text, useDisclosure, Stack } from "@chakra-ui/react";
+import { IoSettingsOutline } from "react-icons/io5";
+import {
+  IconButton,
+  Button,
+  Select,
+  Text,
+  useDisclosure,
+  Stack,
+} from "@chakra-ui/react";
 import {
   Drawer,
   DrawerBody,
@@ -58,9 +66,14 @@ const SettingsMenu = ({
 
   return (
     <>
-      <Button ref={btnRef} colorScheme="teal" onClick={onOpen}>
-        Settings
-      </Button>
+      <IconButton
+        ref={btnRef}
+        aria-label="Settings"
+        colorScheme="white"
+        color="teal"
+        onClick={onOpen}
+        icon={<IoSettingsOutline size={30} />}
+      ></IconButton>
       <Drawer
         isOpen={isOpen}
         placement="right"

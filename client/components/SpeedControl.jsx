@@ -1,6 +1,6 @@
 import React from "react";
 import { IconButton, Stack } from "@chakra-ui/react";
-import { MdKeyboardArrowDown, MdKeyboardArrowUp } from "react-icons/md";
+import { FiArrowDownCircle, FiArrowUpCircle } from "react-icons/fi";
 import { Stat, StatLabel, StatNumber } from "@chakra-ui/react";
 
 const SpeedControl = ({ autoPlaySpeed, setAutoPlaySpeed }) => {
@@ -13,8 +13,9 @@ const SpeedControl = ({ autoPlaySpeed, setAutoPlaySpeed }) => {
       <IconButton
         onClick={() => adjSpeed(-100)}
         aria-label="Slower"
-        icon={<MdKeyboardArrowUp size={30} />}
-        colorScheme="teal"
+        icon={<FiArrowUpCircle size={30} />}
+        colorScheme="white"
+        color="teal"
         size="md"
         isDisabled={autoPlaySpeed === 100 ? true : false}
       ></IconButton>
@@ -25,8 +26,9 @@ const SpeedControl = ({ autoPlaySpeed, setAutoPlaySpeed }) => {
       <IconButton
         onClick={() => adjSpeed(100)}
         aria-label="Slower"
-        icon={<MdKeyboardArrowDown size={30} />}
-        colorScheme="teal"
+        icon={<FiArrowDownCircle size={30} />}
+        colorScheme="white"
+        color="teal"
         size="md"
         isDisabled={autoPlaySpeed === 1000 ? true : false}
       ></IconButton>

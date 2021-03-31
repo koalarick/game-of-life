@@ -4,8 +4,8 @@ class World {
     width = 400,
     height = 400,
     seed = [],
-    bgRGBA = { red: 255, green: 255, blue: 255, alpha: 255 },
-    fgRGBA = { red: 0, green: 0, blue: 0, alpha: 255 }
+    bgRGBA = { red: 210, green: 215, blue: 211, alpha: 255 },
+    fgRGBA = { red: 0, green: 102, blue: 0, alpha: 255 }
   ) {
     this.width = width;
     this.height = height;
@@ -32,7 +32,6 @@ class World {
   paint(canvasContext, zoomFactor = 1, zoomPoint = { x: 0, y: 0 }) {
     var pixel = canvasContext.createImageData(this.width, this.height);
     var d = pixel.data;
-    //var zoomFactor = 2 ** zoom;
     var frameLength = this.width / zoomFactor;
     var xBox = Math.floor(zoomPoint.x / frameLength);
     var yBox = Math.floor(zoomPoint.y / frameLength);
@@ -43,9 +42,9 @@ class World {
       maxY: (yBox + 1) * frameLength,
     };
 
-    // console.log(frame);
-    // console.log(zoom);
+    // console.log(zoomPoint);
     // console.log(zoomFactor);
+    // console.log(frame);
 
     let pixelCount = 0;
     for (let x = frame.minX; x < frame.maxX; x++) {

@@ -8,7 +8,7 @@ const ZoomControl = ({ zoom, setZoom, world }) => {
     let newZoom = {
       value: zoom.value + adjustment,
       factor: 2 ** (zoom.value + adjustment),
-      zoomPoint: { x: 0, y: 0 },
+      zoomPoint: zoom.ZoomPoint,
     };
     setZoom(newZoom);
   };
@@ -19,7 +19,8 @@ const ZoomControl = ({ zoom, setZoom, world }) => {
         onClick={() => adjZoom(1)}
         aria-label="Increase Zoom"
         icon={<AiOutlineZoomIn size={30} />}
-        colorScheme="teal"
+        colorScheme="white"
+        color="teal"
         size="md"
         isDisabled={zoom.value < 4 ? false : true}
       ></IconButton>
@@ -31,7 +32,8 @@ const ZoomControl = ({ zoom, setZoom, world }) => {
         onClick={() => adjZoom(-1)}
         aria-label="Slower"
         icon={<AiOutlineZoomOut size={30} />}
-        colorScheme="teal"
+        colorScheme="white"
+        color="teal"
         size="md"
         isDisabled={zoom.value > 0 ? false : true}
       ></IconButton>
