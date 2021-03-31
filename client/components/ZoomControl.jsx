@@ -4,19 +4,10 @@ import { AiOutlineZoomIn, AiOutlineZoomOut } from "react-icons/ai";
 import { Stat, StatLabel, StatNumber } from "@chakra-ui/react";
 
 const ZoomControl = ({ zoom, setZoom, world }) => {
-  const increaseZoom = () => {
+  const adjZoom = (adjustment) => {
     let newZoom = {
-      value: zoom.value + 1,
-      factor: 2 ** (zoom.value + 1),
-      zoomPoint: { x: 0, y: 0 },
-    };
-    setZoom(newZoom);
-  };
-
-  const decreaseZoom = () => {
-    let newZoom = {
-      value: zoom.value - 1,
-      factor: 2 ** (zoom.value - 1),
+      value: zoom.value + adjustment,
+      factor: 2 ** (zoom.value + adjustment),
       zoomPoint: { x: 0, y: 0 },
     };
     setZoom(newZoom);
@@ -25,7 +16,7 @@ const ZoomControl = ({ zoom, setZoom, world }) => {
   return (
     <Stack m={4} spacing={4} direction="column" align="center">
       <IconButton
-        onClick={increaseZoom}
+        onClick={() => adjZoom(1)}
         aria-label="Increase Zoom"
         icon={<AiOutlineZoomIn size={30} />}
         colorScheme="teal"
@@ -37,7 +28,7 @@ const ZoomControl = ({ zoom, setZoom, world }) => {
         <StatNumber>{`${zoom.factor}x`}</StatNumber>
       </Stat>
       <IconButton
-        onClick={decreaseZoom}
+        onClick={() => adjZoom(-1)}
         aria-label="Slower"
         icon={<AiOutlineZoomOut size={30} />}
         colorScheme="teal"
