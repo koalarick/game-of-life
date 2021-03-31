@@ -1,16 +1,11 @@
 import React, { useRef, useEffect, useState } from "react";
 import World from "../World";
 
-const Canvas = ({ generation }) => {
+const Canvas = ({ generation, world, setWorld, zoom, setZoom }) => {
   const canvasRef = useRef(null);
   const canvas = canvasRef.current;
-  const [world, setWorld] = useState(null);
-  const [zoom, setZoom] = useState({
-    value: 0,
-    factor: 1,
-    zoomPoint: { x: 0, y: 0 },
-  });
 
+  // tick
   useEffect(() => {
     if (!generation) {
       var newWorld = new World();
@@ -21,24 +16,21 @@ const Canvas = ({ generation }) => {
     }
   }, [generation]);
 
+  // repaint
   useEffect(() => {
-    if (world)
+    if (world) {
       world.paint(canvas.getContext("2d"), zoom.factor, zoom.zoomPoint);
-  }, [world]);
+    }
+  }, [world, zoom]);
 
   const adjZoom = (event) => {
-    console.log(zoom);
     if (zoom.value < 4) {
-      let newZoomPoint = getCursorPosition(canvas, event);
-      let newZoomValue = zoom.value + 1;
-      let newZoomFactor = 2 ** newZoomValue;
-      console.log({ newZoomValue, newZoomFactor, newZoomPoint });
-      world.paint(canvas.getContext("2d"), newZoomFactor, newZoomPoint);
-      setZoom({
-        value: newZoomValue,
-        factor: newZoomFactor,
-        zoomPoint: newZoomPoint,
-      });
+      let newZoom = {
+        value: zoom.value + 1,
+        factor: 2 ** (zoom.value + 1),
+        zoomPoint: getCursorPosition(canvas, event),
+      };
+      setZoom(newZoom);
     }
   };
 
