@@ -1,13 +1,6 @@
-import React, { useRef, useEffect, useState } from "react";
+import React from "react";
 import { RiGalleryFill } from "react-icons/ri";
-import {
-  IconButton,
-  Button,
-  Select,
-  Text,
-  useDisclosure,
-  Stack,
-} from "@chakra-ui/react";
+import { IconButton, useDisclosure, SimpleGrid, Box } from "@chakra-ui/react";
 import {
   Drawer,
   DrawerBody,
@@ -17,10 +10,19 @@ import {
   DrawerContent,
   DrawerCloseButton,
 } from "@chakra-ui/react";
+import PhotoModal from "./PhotoModal";
 
-const PhotoGallery = () => {
+const PhotoGallery = ({ galleryPhotos }) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [placement, setPlacement] = React.useState("top");
+
+  const photos = galleryPhotos.map((photo) => {
+    return (
+      <Box>
+        <PhotoModal photo={photo} />
+      </Box>
+    );
+  });
 
   return (
     <>
@@ -37,18 +39,9 @@ const PhotoGallery = () => {
               User World Snapshots
             </DrawerHeader>
             <DrawerBody>
-              <p>Some contents...</p>
-              <p>Some contents...</p>
-              <p>Some contents...</p>
-              <p>Some contents...</p>
-              <p>Some contents...</p>
-              <p>Some contents...</p>
-              <p>Some contents...</p>
-              <p>Some contents...</p>
-              <p>Some contents...</p>
-              <p>Some contents...</p>
-              <p>Some contents...</p>
-              <p>Some contents...</p>
+              <SimpleGrid m={4} minChildWidth="100px" spacing="20px">
+                {photos}
+              </SimpleGrid>
             </DrawerBody>
           </DrawerContent>
         </DrawerOverlay>

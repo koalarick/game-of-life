@@ -14,6 +14,7 @@ class World {
     this.matrix = seed;
     this.neighborMin = rules.neighborMin;
     this.neighborMax = rules.neighborMax;
+    this.dataURL = null;
   }
 
   randomize(populationChance = 0.5) {

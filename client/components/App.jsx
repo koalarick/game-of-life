@@ -43,9 +43,8 @@ const App = () => {
     setGeneration(0);
   };
 
-  const saveSnapshot = (matrix) => {
-    console.log(matrix);
-    setGalleryPhotos([...galleryPhotos, matrix]);
+  const saveSnapshot = (dataURL) => {
+    setGalleryPhotos([...galleryPhotos, dataURL]);
   };
 
   return (
@@ -58,7 +57,7 @@ const App = () => {
         </Box>
         <Spacer />
         <Box>
-          <PhotoGallery />
+          <PhotoGallery galleryPhotos={galleryPhotos} />
           <SettingsMenu
             setRandomChance={setRandomChance}
             randomChance={randomChance}

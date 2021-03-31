@@ -5,3 +5,7 @@ dist/bundle.js
 
 #ds_store
 .DS_Store
+
+.env
+
+AWSCLIV2.pkg

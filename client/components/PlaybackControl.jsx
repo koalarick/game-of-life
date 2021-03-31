@@ -48,7 +48,7 @@ const PlaybackControl = ({
         isDisabled={autoPlay}
       ></IconButton>
       <IconButton
-        onClick={() => saveSnapshot(world.matrix)}
+        onClick={() => saveSnapshot(world.dataURL)}
         aria-label="Save Snapshot"
         icon={<MdSave size={30} />}
         colorScheme="teal"
