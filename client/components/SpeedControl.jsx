@@ -4,18 +4,14 @@ import { MdKeyboardArrowDown, MdKeyboardArrowUp } from "react-icons/md";
 import { Stat, StatLabel, StatNumber } from "@chakra-ui/react";
 
 const SpeedControl = ({ autoPlaySpeed, setAutoPlaySpeed }) => {
-  const increaseSpeed = () => {
-    setAutoPlaySpeed(autoPlaySpeed - 100);
-  };
-
-  const decreaseSpeed = () => {
-    setAutoPlaySpeed(autoPlaySpeed + 100);
+  const adjSpeed = (adjustment) => {
+    setAutoPlaySpeed(autoPlaySpeed + adjustment);
   };
 
   return (
     <Stack m={4} spacing={4} direction="column" align="center">
       <IconButton
-        onClick={increaseSpeed}
+        onClick={() => adjSpeed(-100)}
         aria-label="Slower"
         icon={<MdKeyboardArrowUp size={30} />}
         colorScheme="teal"
@@ -27,7 +23,7 @@ const SpeedControl = ({ autoPlaySpeed, setAutoPlaySpeed }) => {
         <StatNumber>{(1100 - autoPlaySpeed) / 100}</StatNumber>
       </Stat>
       <IconButton
-        onClick={decreaseSpeed}
+        onClick={() => adjSpeed(100)}
         aria-label="Slower"
         icon={<MdKeyboardArrowDown size={30} />}
         colorScheme="teal"
