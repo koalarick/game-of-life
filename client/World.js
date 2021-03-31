@@ -15,11 +15,14 @@ class World {
     this.neighborMax = 3;
   }
 
-  randomize() {
+  randomize(populationChance = 0.5) {
     for (let x = 0; x < this.width; x++) {
       this.matrix[x] = [];
       for (let y = 0; y < this.height; y++) {
-        this.matrix[x].push(Math.round(Math.random()));
+        let random = Math.random();
+        random < populationChance
+          ? this.matrix[x].push(1)
+          : this.matrix[x].push(0);
       }
     }
     return this;

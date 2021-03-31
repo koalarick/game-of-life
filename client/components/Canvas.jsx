@@ -1,20 +1,31 @@
 import React, { useRef, useEffect, useState } from "react";
 import World from "../World";
 
-const Canvas = ({ generation, world, setWorld, zoom, setZoom }) => {
+const Canvas = ({
+  generation,
+  world,
+  setWorld,
+  zoom,
+  setZoom,
+  randomChance,
+  hasChanges,
+  setHasChanges,
+}) => {
   const canvasRef = useRef(null);
   const canvas = canvasRef.current;
 
   // tick
   useEffect(() => {
-    if (!generation) {
+    console.log("ticking");
+    if (!generation || hasChanges) {
       var newWorld = new World();
-      setWorld(newWorld.randomize());
-    } else if (world) {
+      setWorld(newWorld.randomize(randomChance));
+    } else if (world && generation) {
       let newWorld = new World(400, 400, world.tick(1));
       setWorld(newWorld);
     }
-  }, [generation]);
+    setHasChanges(false);
+  }, [generation, hasChanges]);
 
   // repaint
   useEffect(() => {

@@ -6,12 +6,15 @@ import Canvas from "./Canvas";
 import SpeedControl from "./SpeedControl";
 import PlaybackControl from "./PlaybackControl";
 import ZoomControl from "./ZoomControl";
+import SettingsMenu from "./SettingsMenu";
 
 const App = () => {
   const [generation, setGeneration] = useState(0);
   const [world, setWorld] = useState(null);
   const [autoPlay, setAutoPlay] = useState(false);
   const [autoPlaySpeed, setAutoPlaySpeed] = useState(500);
+  const [hasChanges, setHasChanges] = useState(false);
+  const [randomChance, setRandomChance] = useState(0.0025);
   const [zoom, setZoom] = useState({
     value: 0,
     factor: 1,
@@ -52,6 +55,9 @@ const App = () => {
             setZoom={setZoom}
             world={world}
             setWorld={setWorld}
+            randomChance={randomChance}
+            hasChanges={hasChanges}
+            setHasChanges={setHasChanges}
           />
           <PlaybackControl
             autoPlay={autoPlay}
@@ -65,6 +71,13 @@ const App = () => {
           setAutoPlaySpeed={setAutoPlaySpeed.bind(this)}
         />
       </Stack>
+      <SettingsMenu
+        setRandomChance={setRandomChance}
+        randomChance={randomChance}
+        generation={generation}
+        setGeneration={setGeneration}
+        setHasChanges={setHasChanges}
+      />
     </Stack>
   );
 };
