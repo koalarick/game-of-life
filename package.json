@@ -21,14 +21,18 @@
     "@chakra-ui/react": "^1.4.2",
     "@emotion/react": "^11.1.5",
     "@emotion/styled": "^11.1.5",
+    "aws-sdk": "^2.877.0",
+    "axios": "^0.21.1",
     "babel-polyfill": "^6.26.0",
+    "dotenv": "^8.2.0",
     "express": "^4.17.0",
     "framer-motion": "^4.0.3",
     "mongodb": "^3.6.5",
     "mysql": "^2.18.1",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
-    "react-icons": "^4.2.0"
+    "react-icons": "^4.2.0",
+    "uuid": "^8.3.2"
   },
   "devDependencies": {
     "@babel/core": "^7.11.6",

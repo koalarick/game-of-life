@@ -7,6 +7,13 @@ import {
   MdSave,
 } from "react-icons/md";
 import { AiFillStepForward } from "react-icons/ai";
+// const axios = require("axios").default;
+
+// const savePhoto = (photo) => {
+//   let options = {
+
+//   }
+// }
 
 const PlaybackControl = ({
   autoPlay,
