@@ -1,5 +1,5 @@
 import React, { useRef, useEffect, useState } from "react";
-import { Button, Box, IconButton, Stack, Center } from "@chakra-ui/react";
+import { Stack, Flex, Heading, Box, Spacer } from "@chakra-ui/react";
 import { Stat, StatLabel, StatNumber } from "@chakra-ui/react";
 import { useInterval } from "../helperFunctions";
 import Canvas from "./Canvas";
@@ -42,47 +42,59 @@ const App = () => {
   };
 
   return (
-    <Stack w="100%" m={4} spacing={4} direction="column" align="center">
-      <Stack m={4} spacing={4} direction="row" align="center">
-        <ZoomControl zoom={zoom} setZoom={setZoom} world={world} />
-        <Stack m={4} spacing={4} direction="column" align="center">
-          <Stat align="center">
-            <StatLabel>Generation</StatLabel>
-            <StatNumber>{generation}</StatNumber>
-          </Stat>
-          <Canvas
-            generation={generation}
-            zoom={zoom}
-            setZoom={setZoom}
-            world={world}
-            setWorld={setWorld}
+    <>
+      <Flex m={6}>
+        <Box p="2">
+          <Heading size="md" color="teal">
+            Game of Life
+          </Heading>
+        </Box>
+        <Spacer />
+        <Box>
+          <SettingsMenu
+            setRandomChance={setRandomChance}
             randomChance={randomChance}
-            hasChanges={hasChanges}
+            generation={generation}
+            setGeneration={setGeneration}
             setHasChanges={setHasChanges}
             rules={rules}
+            setRules={setRules}
           />
-          <PlaybackControl
-            autoPlay={autoPlay}
-            resetWorld={resetWorld.bind(this)}
-            togglePlay={togglePlay.bind(this)}
-            nextGeneration={nextGeneration.bind(this)}
+        </Box>
+      </Flex>
+      <Flex w="100%" align="center" justify="center">
+        <Stack m={4} spacing={4} direction="row" align="center">
+          <ZoomControl zoom={zoom} setZoom={setZoom} world={world} />
+          <Stack m={4} spacing={4} direction="column" align="center">
+            <Stat align="center">
+              <StatLabel>Generation</StatLabel>
+              <StatNumber>{generation}</StatNumber>
+            </Stat>
+            <Canvas
+              generation={generation}
+              zoom={zoom}
+              setZoom={setZoom}
+              world={world}
+              setWorld={setWorld}
+              randomChance={randomChance}
+              hasChanges={hasChanges}
+              setHasChanges={setHasChanges}
+              rules={rules}
+            />
+            <PlaybackControl
+              autoPlay={autoPlay}
+              resetWorld={resetWorld.bind(this)}
+              togglePlay={togglePlay.bind(this)}
+              nextGeneration={nextGeneration.bind(this)}
+            />
+          </Stack>
+          <SpeedControl
+            autoPlaySpeed={autoPlaySpeed}
+            setAutoPlaySpeed={setAutoPlaySpeed.bind(this)}
           />
         </Stack>
-        <SpeedControl
-          autoPlaySpeed={autoPlaySpeed}
-          setAutoPlaySpeed={setAutoPlaySpeed.bind(this)}
-        />
-      </Stack>
-      <SettingsMenu
-        setRandomChance={setRandomChance}
-        randomChance={randomChance}
-        generation={generation}
-        setGeneration={setGeneration}
-        setHasChanges={setHasChanges}
-        rules={rules}
-        setRules={setRules}
-      />
-    </Stack>
+      </Flex>
+    </>
   );
 };
 
