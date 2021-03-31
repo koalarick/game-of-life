@@ -1,5 +1,6 @@
 class World {
   constructor(
+    rules,
     width = 400,
     height = 400,
     seed = [],
@@ -11,8 +12,8 @@ class World {
     this.bgRGBA = bgRGBA;
     this.fgRGBA = fgRGBA;
     this.matrix = seed;
-    this.neighborMin = 2;
-    this.neighborMax = 3;
+    this.neighborMin = rules.neighborMin;
+    this.neighborMax = rules.neighborMax;
   }
 
   randomize(populationChance = 0.5) {

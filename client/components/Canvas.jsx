@@ -10,6 +10,7 @@ const Canvas = ({
   randomChance,
   hasChanges,
   setHasChanges,
+  rules,
 }) => {
   const canvasRef = useRef(null);
   const canvas = canvasRef.current;
@@ -18,10 +19,10 @@ const Canvas = ({
   useEffect(() => {
     console.log("ticking");
     if (!generation || hasChanges) {
-      var newWorld = new World();
+      var newWorld = new World(rules);
       setWorld(newWorld.randomize(randomChance));
     } else if (world && generation) {
-      let newWorld = new World(400, 400, world.tick(1));
+      let newWorld = new World(rules, 400, 400, world.tick(1));
       setWorld(newWorld);
     }
     setHasChanges(false);

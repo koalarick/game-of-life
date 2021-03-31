@@ -15,6 +15,7 @@ const App = () => {
   const [autoPlaySpeed, setAutoPlaySpeed] = useState(500);
   const [hasChanges, setHasChanges] = useState(false);
   const [randomChance, setRandomChance] = useState(0.0025);
+  const [rules, setRules] = useState({ neighborMin: 2, neighborMax: 2 });
   const [zoom, setZoom] = useState({
     value: 0,
     factor: 1,
@@ -58,6 +59,7 @@ const App = () => {
             randomChance={randomChance}
             hasChanges={hasChanges}
             setHasChanges={setHasChanges}
+            rules={rules}
           />
           <PlaybackControl
             autoPlay={autoPlay}
@@ -77,6 +79,8 @@ const App = () => {
         generation={generation}
         setGeneration={setGeneration}
         setHasChanges={setHasChanges}
+        rules={rules}
+        setRules={setRules}
       />
     </Stack>
   );
