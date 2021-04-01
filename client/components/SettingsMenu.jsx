@@ -97,10 +97,10 @@ const SettingsMenu = ({
                 mb={4}
               >
                 <option value={0.5}>50% Random</option>
+                <option value={0.25}>25% Random</option>
                 <option value={0.1}>10% Random</option>
-                <option value={0.02}>2% Random</option>
+                <option value={0.05}>5% Random</option>
                 <option value={0.01}>1% Random</option>
-                <option value={0.0025}>.25% Random</option>
               </Select>
               <Stack spacing={3}>
                 <Text fontSize="sm" mt={10} as="u">
