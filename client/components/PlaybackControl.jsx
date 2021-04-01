@@ -12,7 +12,7 @@ const axios = require("axios").default;
 const savePhoto = (photo) => {
   let request = {
     method: "post",
-    url: "http://localhost:3000/photos",
+    url: "http://18.210.13.63:3000/photos",
     headers: {
       "Content-Type": "application/json",
     },

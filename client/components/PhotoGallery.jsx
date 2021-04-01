@@ -30,7 +30,7 @@ const PhotoGallery = ({ galleryPhotos, setGalleryPhotos }) => {
     // need to getPhotos and store them into the galleryPhotos state
     let request = {
       method: "get",
-      url: "http://localhost:3000/photos",
+      url: "http://18.210.13.63:3000/photos",
       headers: {
         "Content-Type": "application/json",
       },
