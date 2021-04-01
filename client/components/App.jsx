@@ -49,7 +49,7 @@ const App = () => {
 
   return (
     <>
-      <Flex m={6}>
+      <Flex m={4}>
         <Box p="2">
           <Heading size="md" color="teal">
             Game of Life
@@ -57,7 +57,10 @@ const App = () => {
         </Box>
         <Spacer />
         <Box>
-          <PhotoGallery galleryPhotos={galleryPhotos} />
+          <PhotoGallery
+            galleryPhotos={galleryPhotos}
+            setGalleryPhotos={setGalleryPhotos}
+          />
           <SettingsMenu
             setRandomChance={setRandomChance}
             randomChance={randomChance}
@@ -69,7 +72,7 @@ const App = () => {
           />
         </Box>
       </Flex>
-      <Flex w="100%" align="center" justify="center">
+      <Flex w="100%" align="center" justify="center" bg="#fffaed">
         <Stack m={4} spacing={4} direction="row" align="center">
           <ZoomControl zoom={zoom} setZoom={setZoom} world={world} />
           <Stack m={4} spacing={4} direction="column" align="center">

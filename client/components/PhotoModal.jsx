@@ -16,12 +16,18 @@ const PhotoModal = ({ photo }) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   return (
     <>
-      <Image onClick={onOpen} src={photo} borderRadius="full" boxSize="100px" />
+      <Image
+        onClick={onOpen}
+        src={photo}
+        borderRadius="full"
+        boxSize="100px"
+        cursor="pointer"
+      />
       <Modal isOpen={isOpen} onClose={onClose}>
         <ModalOverlay />
-        <ModalContent>
+        <ModalContent bgColor="#DCDCDC">
           <ModalCloseButton />
-          <ModalBody>
+          <ModalBody m={8}>
             <Image src={photo} />
           </ModalBody>
         </ModalContent>

@@ -17,7 +17,6 @@ const Canvas = ({
 
   // tick
   useEffect(() => {
-    console.log("ticking");
     if (!generation || hasChanges) {
       var newWorld = new World(rules);
       setWorld(newWorld.randomize(randomChance));
@@ -51,7 +50,7 @@ const Canvas = ({
     const rect = canvas.getBoundingClientRect();
     const y = Math.floor(event.clientX - rect.left);
     const x = Math.floor(event.clientY - rect.top);
-    console.log("x: " + x + " y: " + y);
+    // console.log("x: " + x + " y: " + y);
     return { x, y };
   }
 

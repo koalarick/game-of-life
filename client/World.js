@@ -4,8 +4,8 @@ class World {
     width = 400,
     height = 400,
     seed = [],
-    bgRGBA = { red: 210, green: 215, blue: 211, alpha: 255 },
-    fgRGBA = { red: 0, green: 102, blue: 0, alpha: 255 }
+    bgRGBA = { red: 230, green: 212, blue: 168, alpha: 255 },
+    fgRGBA = { red: 113, green: 143, blue: 84, alpha: 255 }
   ) {
     this.width = width;
     this.height = height;

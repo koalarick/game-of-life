@@ -10,7 +10,6 @@ import { AiFillStepForward } from "react-icons/ai";
 const axios = require("axios").default;
 
 const savePhoto = (photo) => {
-  console.log("tried to save");
   let request = {
     method: "post",
     url: "http://localhost:3000/photos",
