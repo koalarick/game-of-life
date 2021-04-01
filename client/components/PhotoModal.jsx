@@ -25,7 +25,7 @@ const PhotoModal = ({ photo }) => {
       />
       <Modal isOpen={isOpen} onClose={onClose}>
         <ModalOverlay />
-        <ModalContent bgColor="#DCDCDC">
+        <ModalContent bgColor="#fffaed">
           <ModalCloseButton />
           <ModalBody m={8}>
             <Image src={photo} />

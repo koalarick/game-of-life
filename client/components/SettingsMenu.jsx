@@ -114,7 +114,9 @@ const SettingsMenu = ({
                   defaultValue={rules.neighborMin}
                   min={1}
                   max={8}
-                  onChange={(value) => (tempRules.neighborMin = value)}
+                  onChange={(value) => {
+                    tempRules.neighborMin = Number(value);
+                  }}
                 >
                   <NumberInputField />
                   <NumberInputStepper>
@@ -130,7 +132,9 @@ const SettingsMenu = ({
                   defaultValue={rules.neighborMax}
                   min={1}
                   max={8}
-                  onChange={(value) => (tempRules.neighborMax = value)}
+                  onChange={(value) => {
+                    tempRules.neighborMax = Number(value);
+                  }}
                 >
                   <NumberInputField />
                   <NumberInputStepper>
@@ -145,7 +149,7 @@ const SettingsMenu = ({
               <Button variant="outline" mr={3} onClick={onClose}>
                 Cancel
               </Button>
-              <Button colorScheme="blue" onClick={onSave}>
+              <Button colorScheme="teal" onClick={onSave}>
                 Save
               </Button>
             </DrawerFooter>
