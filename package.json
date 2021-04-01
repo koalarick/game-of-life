@@ -5,6 +5,7 @@
   "main": "webpack.config.js",
   "scripts": {
     "react-dev": "webpack -d --watch",
+    "build": "webpack",
     "start": "nodemon server/index.js"
   },
   "repository": {
