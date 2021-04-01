@@ -16,7 +16,7 @@ const App = () => {
   const [autoPlaySpeed, setAutoPlaySpeed] = useState(500);
   const [hasChanges, setHasChanges] = useState(false);
   const [randomChance, setRandomChance] = useState(0.0025);
-  const [rules, setRules] = useState({ neighborMin: 2, neighborMax: 2 });
+  const [rules, setRules] = useState({ neighborMin: 2, neighborMax: 3 });
   const [galleryPhotos, setGalleryPhotos] = useState([]);
   const [zoom, setZoom] = useState({
     value: 0,

@@ -81,15 +81,21 @@ class World {
       for (let x = 0; x < this.width; x++) {
         for (let y = 0; y < this.height; y++) {
           let liveNeighbors = this._countLiveNeighbors(x, y);
-          if (
-            liveNeighbors >= this.neighborMin &&
-            liveNeighbors <= this.neighborMax
-          ) {
-            //console.log(`lives ${liveNeighbors}`);
-            newMatrix[x][y] = 1;
+          if (this.matrix[x][y]) {
+            if (
+              liveNeighbors >= this.neighborMin &&
+              liveNeighbors <= this.neighborMax
+            ) {
+              newMatrix[x][y] = 1;
+            } else {
+              newMatrix[x][y] = 0;
+            }
           } else {
-            //console.log(`dies ${liveNeighbors}`);
-            newMatrix[x][y] = 0;
+            if (liveNeighbors === this.neighborMax) {
+              newMatrix[x][y] = 1;
+            } else {
+              newMatrix[x][y] = 0;
+            }
           }
         }
       }
